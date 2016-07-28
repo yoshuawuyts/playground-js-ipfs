@@ -4,8 +4,7 @@
 ```js
 const ipfs = require('ipfs')
 
-const createNode = ipfs('/my-cool/repo-name')
-createNode((err, node) => {
+ipfs('/my-cool/repo-name', (err, node) => {
   if (err) throw err
   console.log('node is online')
 })
@@ -16,8 +15,7 @@ createNode((err, node) => {
 const pull = require('pull-stream')
 const ipfs = require('ipfs')
 
-const createNode = ipfs('/my-cool/repo-name')
-createNode((err, node) => {
+ipfs('/my-cool/repo-name', (err, node) => {
   if (err) throw err
   const cat$ = ipfs.files.cat('<hash>')
   pull(cat$, pull.log())
