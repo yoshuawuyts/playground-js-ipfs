@@ -1,6 +1,7 @@
 # playground-js-ipfs
 
-## example simple mode
+## example init
+Initialize a node
 ```js
 const ipfs = require('ipfs')
 
@@ -11,6 +12,7 @@ ipfs('/my-cool/repo-name', (err, node) => {
 ```
 
 ## example cat
+Read a file from IPFS and stream it to `stdout`
 ```js
 const pull = require('pull-stream')
 const ipfs = require('ipfs')
