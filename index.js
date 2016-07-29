@@ -38,16 +38,13 @@ function init (repoPath, opts, cb) {
       const file$ = notify()
 
       _node.files.cat(hash, function (err, file) {
-        // this should be fixed in pull-notify 💀
-        if (err) throw err
+        if (err) return file$.abort(err)
 
         file.on('data', function (data) {
           file$(String(data))
         })
         eos(file, function (err) {
-          console.log('ended!')
-          // this should be fixed in pull-notify 💀
-          if (err) throw err
+          if (err) return file$.abort(err)
           file$.end()
         })
       })
@@ -57,6 +54,7 @@ function init (repoPath, opts, cb) {
   })
 }
 
+// (str, obj, fn(err?, obj?)) -> null
 function initIpfs (repoPath, opts, cb) {
   const _node = new Ipfs(repoPath)
 
